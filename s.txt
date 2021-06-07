@@ -1,5 +1,5 @@
 //@version=4
-strategy(title="BOT 1% GARANTI", shorttitle="Technicals 1%", default_qty_type = strategy.percent_of_equity, default_qty_value = 5, overlay=true, 'buy/sell arrows')
+strategy(title="BOT 1% GARANTI", shorttitle="Technicals 1%", default_qty_type = strategy.percent_of_equity, default_qty_value = 5, overlay=true)
 res = input("", title="Indicator Timeframe", type=input.resolution)
 ratingSignal = input(defval = "All", title = "Rating is based on", options = ["MAs", "Oscillators", "All"])
 // Awesome Oscillator
@@ -266,12 +266,8 @@ TakeProfit = strategy.position_avg_price * (1+Profit)
 
 if tradeSignal > StrongBound
     strategy.entry("Long", strategy.long, comment = "BUY")
-    plotshape(color=color.lime, style=shape.arrowup, text="Buy")
-
 
 strategy.close("Long", when = close > TakeProfit, comment = "SELL")
-plotshape(color=color.red, style=shape.arrowdown, text="Sell")
-
 //strategy.entry("buy", strategy.long, when = tradeSignal > StrongBound)
 //strategy.close("sell", when = close > TakeProfit)
 //plot(strategy.equity)
